@@ -1,0 +1,266 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit Complaint | Campus Voice</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #FFF8F4;
+            color: #3D2925;
+        }
+
+        nav {
+            background: white;
+            padding: 18px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+        }
+
+        nav h2 {
+            color: #B83232;
+        }
+
+        nav a {
+            color: #B83232;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 40px 20px 20px;
+        }
+
+        .hero h1 {
+            color: #B83232;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            color: #765B52;
+        }
+
+        .form-container {
+            max-width: 700px;
+            margin: 20px auto 55px;
+            background: white;
+            padding: 35px;
+            border-radius: 14px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.07);
+        }
+
+        .section-title {
+            color: #B83232;
+            font-size: 20px;
+            margin-bottom: 22px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #FFE0CC;
+        }
+
+        .form-group {
+            margin-bottom: 22px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 9px;
+            font-weight: bold;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 13px;
+            border: 1px solid #E8CFC4;
+            border-radius: 7px;
+            outline: none;
+            font-size: 14px;
+            background: #FFFCFA;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            border-color: #E76F35;
+        }
+
+        textarea {
+            min-height: 130px;
+            resize: vertical;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            background: #B83232;
+            color: white;
+            border: none;
+            border-radius: 7px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #E76F35;
+        }
+
+        .message {
+            margin-top: 15px;
+            text-align: center;
+            color: #B83232;
+        }
+
+        @media (max-width: 600px) {
+            .form-container {
+                margin: 15px;
+                padding: 22px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <h2>Campus Voice</h2>
+        <a href="student-dashboard.html">Back to Dashboard</a>
+    </nav>
+
+    <section class="hero">
+        <h1>Submit a Complaint</h1>
+        <p>Tell us about the issue you are facing at the university.</p>
+    </section>
+
+    <div class="form-container">
+
+        <form id="complaintForm" data-storage="complaints">
+
+            <h2 class="section-title">Complaint Details</h2>
+
+            <div class="form-group">
+                <label for="category">Complaint Category</label>
+                <select id="category" name="category" required>
+                    <option value="">Select a category</option>
+                    <option value="Hostel & Mess">Hostel & Mess</option>
+                    <option value="Academics">Academics</option>
+                    <option value="Wi-Fi & Internet">Wi-Fi & Internet</option>
+                    <option value="Infrastructure">Infrastructure</option>
+                    <option value="Transportation">Transportation</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="title">Complaint Title</label>
+                <input
+                    type="text"
+                    id="title"
+                    name="title"
+                    placeholder="Select a category first"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="description">Describe Your Complaint</label>
+                <textarea
+                    id="description"
+                    name="description"
+                    placeholder="Explain the issue you are facing..."
+                    required
+                ></textarea>
+            </div>
+
+            <button type="submit">Submit Complaint</button>
+
+            <p id="formMessage" class="message"></p>
+
+        </form>
+    </div>
+
+    <script>
+        // Check student login
+        if (sessionStorage.getItem("studentLoggedIn") !== "true") {
+            window.location.href = "student-login.html";
+        }
+
+        const category = document.getElementById("category");
+        const title = document.getElementById("title");
+
+        const complaintTitles = {
+            "Hostel & Mess": "Hostel Maintenance Issue",
+            "Academics": "Academic Related Issue",
+            "Wi-Fi & Internet": "Internet Connectivity Issue",
+            "Infrastructure": "Campus Infrastructure Issue",
+            "Transportation": "Transportation Related Issue",
+            "Other": ""
+        };
+
+        let titleEditedByStudent = false;
+
+        title.addEventListener("input", function() {
+            titleEditedByStudent = true;
+        });
+
+        category.addEventListener("change", function() {
+            if (!titleEditedByStudent || title.value.trim() === "") {
+                title.value = complaintTitles[category.value] || "";
+                titleEditedByStudent = false;
+            }
+        });
+
+        // Attach logged-in student details to the form
+        const studentName =
+            sessionStorage.getItem("studentName") || "";
+
+        const studentId =
+            sessionStorage.getItem("studentId") || "";
+
+        const form = document.getElementById("complaintForm");
+
+        form.addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            if (!studentId) {
+                alert("Please login again.");
+                window.location.href = "student-login.html";
+                return;
+            }
+
+            const complaintData = {
+                studentName: studentName,
+                studentId: studentId,
+                category: category.value,
+                title: title.value.trim(),
+                description: document.getElementById("description").value.trim(),
+                status: "Submitted",
+                date: new Date().toLocaleString()
+            };
+
+            let complaints =
+                JSON.parse(localStorage.getItem("complaints")) || [];
+
+            complaints.push(complaintData);
+
+            localStorage.setItem("complaints", JSON.stringify(complaints));
+
+            document.getElementById("formMessage").textContent =
+                "Your complaint has been submitted successfully!";
+
+            form.reset();
+            titleEditedByStudent = false;
+        });
+    </script>
+
+</body>
+</html>

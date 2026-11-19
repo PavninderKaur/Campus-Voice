@@ -1,0 +1,235 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard | Campus Voice</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #FFF8F4;
+            color: #3D2925;
+        }
+
+        nav {
+            background: white;
+            padding: 18px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+        }
+
+        nav h2 {
+            color: #B83232;
+        }
+
+        .logout-btn {
+            background: #B83232;
+            color: white;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .logout-btn:hover {
+            background: #E76F35;
+        }
+
+        .welcome {
+            padding: 45px 8% 25px;
+        }
+
+        .welcome h1 {
+            color: #B83232;
+            margin-bottom: 10px;
+        }
+
+        .welcome p {
+            color: #765B52;
+            line-height: 1.6;
+        }
+
+        .student-info {
+            background: white;
+            margin: 0 8% 35px;
+            padding: 22px;
+            border-radius: 12px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.05);
+        }
+
+        .student-info p {
+            margin: 8px 0;
+        }
+
+        .portal-section {
+            padding: 10px 8% 55px;
+        }
+
+        .portal-section h2 {
+            margin-bottom: 22px;
+            color: #3D2925;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 22px;
+        }
+
+        .card {
+            background: white;
+            padding: 28px;
+            border-radius: 12px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.05);
+            border-top: 4px solid #E76F35;
+        }
+
+        .card h3 {
+            color: #B83232;
+            margin-bottom: 12px;
+        }
+
+        .card p {
+            color: #765B52;
+            line-height: 1.6;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        .card a {
+            display: inline-block;
+            background: #B83232;
+            color: white;
+            padding: 10px 16px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .card a:hover {
+            background: #E76F35;
+        }
+
+        footer {
+            background: #3D2925;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 13px;
+        }
+
+        @media (max-width: 600px) {
+            nav {
+                padding: 16px 5%;
+            }
+
+            .welcome {
+                padding: 35px 5% 20px;
+            }
+
+            .student-info {
+                margin: 0 5% 30px;
+            }
+
+            .portal-section {
+                padding: 10px 5% 40px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <h2>Campus Voice</h2>
+        <button class="logout-btn" onclick="logoutStudent()">Logout</button>
+    </nav>
+
+    <section class="welcome">
+        <h1>Welcome, <span id="displayName">Student</span>!</h1>
+        <p>
+            Your voice matters. Choose a portal below to share your
+            complaints, feedback or suggestions.
+        </p>
+    </section>
+
+    <div class="student-info">
+        <p><strong>Student Name:</strong> <span id="studentName"></span></p>
+        <p><strong>Student ID:</strong> <span id="studentId"></span></p>
+    </div>
+
+    <section class="portal-section">
+        <h2>Student Services</h2>
+
+        <div class="cards">
+
+            <div class="card">
+                <h3>Submit Complaint</h3>
+                <p>
+                    Report campus-related problems and issues
+                    that need attention.
+                </p>
+                <a href="complaint.html">Open Complaint Portal</a>
+            </div>
+
+            <div class="card">
+                <h3>Share Feedback</h3>
+                <p>
+                    Rate your experience and share areas
+                    that need improvement.
+                </p>
+                <a href="feedback.html">Open Feedback Portal</a>
+            </div>
+
+            <div class="card">
+                <h3>Give Suggestions</h3>
+                <p>
+                    Share your ideas to make university life
+                    better for everyone.
+                </p>
+                <a href="suggestion.html">Open Suggestion Portal</a>
+            </div>
+
+        </div>
+    </section>
+
+    <footer>
+        © 2026 Campus Voice | Student Feedback & Grievance Portal
+    </footer>
+
+    <script>
+        // Check whether the student has logged in
+        if (sessionStorage.getItem("studentLoggedIn") !== "true") {
+            window.location.href = "student-login.html";
+        }
+
+        const name = sessionStorage.getItem("studentName") || "Student";
+        const id = sessionStorage.getItem("studentId") || "";
+
+        document.getElementById("displayName").textContent = name;
+        document.getElementById("studentName").textContent = name;
+        document.getElementById("studentId").textContent = id;
+
+        function logoutStudent() {
+            sessionStorage.removeItem("studentName");
+            sessionStorage.removeItem("studentId");
+            sessionStorage.removeItem("studentLoggedIn");
+
+            window.location.href = "student-login.html";
+        }
+    </script>
+
+</body>
+</html>

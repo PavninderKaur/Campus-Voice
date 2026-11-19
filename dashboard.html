@@ -1,0 +1,156 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | Campus Voice</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+
+    <a href="index.html" class="logo">CampusVoice.</a>
+
+    <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="dashboard.html">Dashboard</a></li>
+        <li><a href="admin.html">Admin Panel</a></li>
+        <li><a href="index.html" onclick="logoutAdmin()">Logout</a></li>
+    </ul>
+
+</nav>
+
+<!-- HEADER -->
+<div class="dashboard-header">
+
+    <h1>Admin Dashboard</h1>
+
+    <p>
+        Welcome to the Campus Voice Administration Dashboard.
+        Manage student complaints, feedback and suggestions.
+    </p>
+
+</div>
+
+<!-- STATISTICS -->
+<div class="stats-container">
+
+    <div class="stat-card">
+
+        <h3>Total Complaints</h3>
+
+        <h2 id="totalComplaints">0</h2>
+
+    </div>
+
+    <div class="stat-card">
+
+        <h3>Pending Complaints</h3>
+
+        <h2 id="pendingComplaints">0</h2>
+
+    </div>
+
+    <div class="stat-card">
+
+        <h3>Resolved Complaints</h3>
+
+        <h2 id="resolvedComplaints">0</h2>
+
+    </div>
+
+</div>
+
+<!-- COMPLAINT RECORDS -->
+<section>
+
+    <div class="section-title">
+
+        <h2>Student Complaints</h2>
+
+        <p>Review complaints and update their current status.</p>
+
+    </div>
+
+    <div id="complaintList" class="record-container">
+
+        <p class="empty-state">
+            Loading complaints...
+        </p>
+
+    </div>
+
+</section>
+
+<!-- FEEDBACK -->
+<section>
+
+    <div class="section-title">
+
+        <h2>Recent Feedback</h2>
+
+        <p>Review feedback shared by students.</p>
+
+    </div>
+
+    <div id="feedbackList" class="record-container">
+
+        <p class="empty-state">
+            Loading feedback...
+        </p>
+
+    </div>
+
+</section>
+
+<!-- SUGGESTIONS -->
+<section>
+
+    <div class="section-title">
+
+        <h2>Student Suggestions</h2>
+
+        <p>Explore ideas shared for improving the university.</p>
+
+    </div>
+
+    <div id="suggestionList" class="record-container">
+
+        <p class="empty-state">
+            Loading suggestions...
+        </p>
+
+    </div>
+
+</section>
+
+<!-- FOOTER -->
+<footer>
+
+    <h2>CampusVoice.</h2>
+
+    <p>Your Voice. Your Campus. Your Change.</p>
+
+    <br>
+
+    <p>© 2026 Campus Voice. All Rights Reserved.</p>
+
+</footer>
+
+<script src="script.js"></script>
+
+<script>
+
+function logoutAdmin() {
+    sessionStorage.removeItem("adminId");
+    sessionStorage.removeItem("adminName");
+}
+
+</script>
+
+</body>
+</html>

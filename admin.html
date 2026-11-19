@@ -1,0 +1,214 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Management | Campus Voice</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+
+    <a href="index.html" class="logo">CampusVoice.</a>
+
+    <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="dashboard.html">Dashboard</a></li>
+        <li><a href="admin.html">Admin Panel</a></li>
+        <li><a href="index.html">Logout</a></li>
+    </ul>
+
+</nav>
+
+<!-- HEADER -->
+<div class="dashboard-header">
+
+    <h1>Admin Management Panel</h1>
+
+    <p>
+        Manage additional administrators and assign
+        permissions for Campus Voice.
+    </p>
+
+</div>
+
+<!-- SUPER ADMIN SECTION -->
+<section>
+
+    <div class="section-title">
+
+        <h2>Super Admin Control</h2>
+
+        <p>
+            The Super Admin can add administrators
+            and assign their responsibilities.
+        </p>
+
+    </div>
+
+    <div class="form-container">
+
+        <h2>Add New Administrator</h2>
+
+        <form id="adminForm" data-storage="admins">
+
+            <div class="form-group">
+
+                <label for="adminFullName">Administrator Name</label>
+
+                <input
+                    type="text"
+                    id="adminFullName"
+                    name="name"
+                    placeholder="Enter administrator name"
+                    required
+                >
+
+            </div>
+
+            <div class="form-group">
+
+                <label for="adminEmail">Email Address</label>
+
+                <input
+                    type="email"
+                    id="adminEmail"
+                    name="email"
+                    placeholder="Enter email address"
+                    required
+                >
+
+            </div>
+
+            <h3>Assign Permissions</h3>
+
+            <p>Select the responsibilities of this administrator.</p>
+
+            <br>
+
+            <div class="form-group">
+
+                <label>
+                    <input
+                        type="checkbox"
+                        name="viewComplaints"
+                        value="true"
+                    >
+                    View Complaints
+                </label>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>
+                    <input
+                        type="checkbox"
+                        name="updateStatus"
+                        value="true"
+                    >
+                    Update Complaint Status
+                </label>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>
+                    <input
+                        type="checkbox"
+                        name="viewFeedback"
+                        value="true"
+                    >
+                    View Feedback
+                </label>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>
+                    <input
+                        type="checkbox"
+                        name="viewSuggestions"
+                        value="true"
+                    >
+                    View Suggestions
+                </label>
+
+            </div>
+
+            <button type="submit" class="btn">
+                Add Administrator →
+            </button>
+
+            <p class="form-message"></p>
+
+        </form>
+
+    </div>
+
+</section>
+
+<!-- ADMIN LIST -->
+<section>
+
+    <div class="section-title">
+
+        <h2>Additional Administrators</h2>
+
+        <p>
+            View the administrators added to this prototype.
+        </p>
+
+    </div>
+
+    <div id="adminList" class="record-container">
+
+        <p class="empty-state">
+            No administrators added yet.
+        </p>
+
+    </div>
+
+</section>
+
+<!-- IMPORTANT NOTICE -->
+<section>
+
+    <div class="card">
+
+        <h3>Important Security Notice</h3>
+
+        <p>
+            This page is a front-end prototype. Actual
+            Super Admin verification, permission enforcement
+            and secure administrator management require
+            a protected backend and database.
+        </p>
+
+    </div>
+
+</section>
+
+<!-- FOOTER -->
+<footer>
+
+    <h2>CampusVoice.</h2>
+
+    <p>Your Voice. Your Campus. Your Change.</p>
+
+    <br>
+
+    <p>© 2026 Campus Voice. All Rights Reserved.</p>
+
+</footer>
+
+<script src="script.js"></script>
+
+</body>
+</html>

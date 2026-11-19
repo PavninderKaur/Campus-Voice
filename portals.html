@@ -1,0 +1,348 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campus Voice | Portal Access</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --red: #B83232;
+            --orange: #E76F35;
+            --peach: #FFE0CC;
+            --background: #FFF8F4;
+            --dark: #3D2925;
+            --white: #FFFFFF;
+            --muted: #796B66;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--background);
+            color: var(--dark);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        nav {
+            padding: 22px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #F0DED5;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--red);
+            font-size: 21px;
+            font-weight: 700;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--red);
+            color: white;
+            border-radius: 10px;
+            font-size: 21px;
+        }
+
+        .back-link {
+            color: var(--dark);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .back-link:hover {
+            color: var(--red);
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 75px 8% 85px;
+        }
+
+        .heading {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .eyebrow {
+            color: var(--orange);
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .heading h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(35px, 4vw, 48px);
+            margin: 15px 0;
+        }
+
+        .heading p {
+            color: var(--muted);
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        .portal-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 28px;
+            max-width: 950px;
+            margin: auto;
+        }
+
+        .portal-card {
+            background: white;
+            border: 1px solid #F0E1DA;
+            border-radius: 15px;
+            padding: 38px;
+            transition: 0.3s;
+        }
+
+        .portal-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 15px 35px rgba(61,41,37,0.09);
+            border-color: var(--peach);
+        }
+
+        .portal-icon {
+            width: 62px;
+            height: 62px;
+            border-radius: 14px;
+            background: var(--peach);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 29px;
+            margin-bottom: 25px;
+        }
+
+        .portal-card h2 {
+            font-size: 22px;
+            margin-bottom: 13px;
+        }
+
+        .portal-card p {
+            color: var(--muted);
+            font-size: 14px;
+            line-height: 1.9;
+            min-height: 105px;
+            margin-bottom: 25px;
+        }
+
+        .portal-card ul {
+            list-style: none;
+            margin-bottom: 28px;
+        }
+
+        .portal-card li {
+            color: var(--muted);
+            font-size: 13px;
+            margin-bottom: 11px;
+        }
+
+        .portal-card li::before {
+            content: "✓";
+            color: var(--orange);
+            font-weight: 700;
+            margin-right: 10px;
+        }
+
+        .login-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 13px 22px;
+            border-radius: 7px;
+            background: var(--red);
+            color: white;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .login-button:hover {
+            background: var(--orange);
+            transform: translateY(-2px);
+        }
+
+        .note {
+            max-width: 950px;
+            margin: 35px auto 0;
+            text-align: center;
+            color: var(--muted);
+            font-size: 12px;
+            line-height: 1.7;
+        }
+
+        footer {
+            background: var(--dark);
+            color: #E8D8D2;
+            padding: 23px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            font-size: 12px;
+        }
+
+        footer strong {
+            color: white;
+        }
+
+        @media (max-width: 700px) {
+            nav {
+                padding: 18px 6%;
+            }
+
+            .main-content {
+                padding: 55px 6%;
+            }
+
+            .portal-container {
+                grid-template-columns: 1fr;
+            }
+
+            .portal-card {
+                padding: 28px;
+            }
+
+            .portal-card p {
+                min-height: auto;
+            }
+
+            footer {
+                justify-content: center;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav>
+
+        <div class="logo">
+            <div class="logo-icon">C</div>
+            Campus Voice
+        </div>
+
+        <a href="index.html" class="back-link">
+            ← Back to Home
+        </a>
+
+    </nav>
+
+    <!-- Portal Selection -->
+    <main class="main-content">
+
+        <div class="heading">
+
+            <div class="eyebrow">SECURE PORTAL ACCESS</div>
+
+            <h1>Select Your Portal</h1>
+
+            <p>
+                Welcome to Campus Voice. Choose the appropriate portal
+                to access the platform.
+            </p>
+
+        </div>
+
+        <div class="portal-container">
+
+            <!-- Student Portal -->
+            <div class="portal-card">
+
+                <div class="portal-icon">🎓</div>
+
+                <h2>Student Portal</h2>
+
+                <p>
+                    A dedicated space for students to communicate
+                    their concerns, share experiences, and contribute
+                    towards improving university life.
+                </p>
+
+                <ul>
+                    <li>Submit campus-related complaints</li>
+                    <li>Share feedback about university services</li>
+                    <li>Recommend improvements and suggestions</li>
+                </ul>
+
+                <a href="student-login.html" class="login-button">
+                    Student Login →
+                </a>
+
+            </div>
+
+            <!-- Administration Portal -->
+            <div class="portal-card">
+
+                <div class="portal-icon">🛡️</div>
+
+                <h2>Administration Portal</h2>
+
+                <p>
+                    A dedicated workspace for authorized
+                    administrators to review submissions
+                    and support effective campus management.
+                </p>
+
+                <ul>
+                    <li>Review submitted complaints and feedback</li>
+                    <li>Monitor suggestions and student concerns</li>
+                    <li>Manage submissions and their status</li>
+                </ul>
+
+                <a href="admin-login.html" class="login-button">
+                    Administration Login →
+                </a>
+
+            </div>
+
+        </div>
+
+        <p class="note">
+            Please select the portal according to your role.
+            Access to administrative functions is intended for authorized personnel.
+        </p>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 <strong>Campus Voice</strong>. All rights reserved.</p>
+        <p>Your Campus. Your Voice. Your Change.</p>
+    </footer>
+
+</body>
+</html>

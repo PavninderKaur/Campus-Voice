@@ -1,0 +1,139 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login | Campus Voice</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="login-page">
+
+    <div class="login-box">
+
+        <!-- WELCOME PANEL -->
+        <div class="login-welcome">
+
+            <h1>Admin Portal</h1>
+
+            <p>
+                Welcome to the Campus Voice Administration Portal.
+                Manage student complaints, feedback and suggestions
+                and help create a better university environment.
+            </p>
+
+            <br>
+
+            <h3>Manage. Respond. Improve.</h3>
+
+        </div>
+
+        <!-- LOGIN FORM -->
+        <div class="login-form">
+
+            <h2>Administrator Login</h2>
+
+            <p>Enter your administrator details to continue.</p>
+
+            <br>
+
+            <form id="adminLoginForm">
+
+                <div class="form-group">
+
+                    <label for="adminName">
+                        Admin Name (Optional)
+                    </label>
+
+                    <input
+                        type="text"
+                        id="adminName"
+                        name="adminName"
+                        placeholder="Enter your name"
+                    >
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="adminId">Admin ID</label>
+
+                    <input
+                        type="text"
+                        id="adminId"
+                        name="adminId"
+                        placeholder="Enter your admin ID"
+                        required
+                    >
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="adminPassword">Password</label>
+
+                    <input
+                        type="password"
+                        id="adminPassword"
+                        name="password"
+                        placeholder="Enter your password"
+                        required
+                    >
+
+                </div>
+
+                <button type="submit" class="btn">
+                    Login to Admin Dashboard →
+                </button>
+
+                <p id="loginMessage" class="form-message"></p>
+
+            </form>
+
+            <br>
+
+            <a href="index.html" class="btn btn-outline">
+                ← Back to Homepage
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+document.getElementById("adminLoginForm")
+.addEventListener("submit", function(event) {
+
+    event.preventDefault();
+
+    const adminId =
+        document.getElementById("adminId").value.trim();
+
+    const password =
+        document.getElementById("adminPassword").value.trim();
+
+    const adminName =
+        document.getElementById("adminName").value.trim();
+
+    if (adminId !== "" && password !== "") {
+
+        // Demo navigation only, not credential verification.
+        sessionStorage.setItem("adminId", adminId);
+        sessionStorage.setItem("adminName", adminName);
+
+        window.location.href = "dashboard.html";
+
+    }
+
+});
+
+</script>
+
+</body>
+</html>
